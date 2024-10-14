@@ -26,6 +26,13 @@ public class CustomerController {
         return ResponseEntity.ok(dto);
     }
 
+    /**
+     * Get a Page of entities given page number & page size.
+     * Slice can also be used in place of Page
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/{pageNum}/{pageSize}")
     public ResponseEntity<CustomerPageDto> getCustomersByPage(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
 
@@ -33,6 +40,12 @@ public class CustomerController {
         return ResponseEntity.ok(dto);
     }
 
+    @GetMapping("/countByFirstNm/{firstNm}")
+    public ResponseEntity<Integer> countByFirstNm(@PathVariable("firstNm") String firstNm) {
+
+        int count = customerService.countByFirstName(firstNm);
+        return ResponseEntity.ok(count);
+    }
     /**
      * This following way attaches the Exception handler to the current class only.
      * To have it at the project level, look at CustomerExceptionHandler.class
