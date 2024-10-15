@@ -1,34 +1,33 @@
 package org.chintanu.sdjpa.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Data
-@NoArgsConstructor(force = true)
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "CUSTOMERS")
 public class Customer {
 
     @Id
     @Column(name = "CUST_ID")
-    private final Long custId;
+    private Long custId;
 
     @Column(name = "CUST_FIRST_NAME")
-    private final String custFirstNm;
+    private String custFirstNm;
 
     @Column(name = "CUST_LAST_NAME")
-    private final String custLastNm;
+    private String custLastNm;
 
     @Column(name = "CUST_GENDER")
-    private final String custGender;
+    private String custGender;
 
     @Column(name = "CUST_YEAR_OF_BIRTH")
-    private final Integer custYOB;
+    private Integer custYOB;
 
     @Column(name = "CUST_MARITAL_STATUS")
     private String custMaritalStatus;
