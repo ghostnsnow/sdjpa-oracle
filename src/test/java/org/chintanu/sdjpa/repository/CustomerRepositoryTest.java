@@ -243,14 +243,39 @@ class CustomerRepositoryTest {
         Assertions.assertThat(customer.getCustId()).isEqualTo(50576L);
     }
 
+    //TODO - Find Customer with the foreign key.
+    // This & next method is same, however for this one Hibernate doesn't join with the Country table as FK is present in Customer only but for the next one it does join.
+    @Test
+    @DisplayName("Find Customers with Foreign Key")
+    void findByCountryCountryId() {
+
+        List<Customer> customers = repository.findByCountryCountryId(52778L);
+
+        Assertions.assertThat(customers.size()).isEqualTo(33);
+    }
+
+    //TODO - Find Customer with attribute's attribute(Country's name in this case)
+    @Test
+    @DisplayName("Find Customers with attribute's attribute")
+    void findByCountryCountryNm() {
+
+        List<Customer> customers = repository.findByCountryCountryNm("Spain");
+
+        Assertions.assertThat(customers.size()).isEqualTo(33);
+    }
+
     //TODO - Find Top N Customer from within a Page : Seems potential bug
     @Test
     @DisplayName("Find Top N Customers from within a Page")
     void findTop5ByOrderByCustIdAsc() {
 
         Pageable pageable = PageRequest.of(1, 10);
+        System.out.println("Offset 1 : " + pageable.getOffset());
+        System.out.println("Page Num 1 : " + pageable.getPageNumber());
 
         List<Customer> customers = repository.findTop5ByOrderByCustIdAsc(pageable);
+        System.out.println("Offset 2 : " + pageable.getOffset());
+        System.out.println("Page Num 2 : " + pageable.getPageNumber());
 
         Assertions.assertThat(customers.size()).isEqualTo(5);
         /*Assertions.assertThat(customers.get(0).getCustId()).isEqualTo(1457L);

@@ -36,6 +36,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     List<Customer> findTop5ByOrderByCustIdAsc(Pageable pageable);
 
+    List<Customer> findByCountryCountryId(Long countryId);
+
+    List<Customer> findByCountryCountryNm(String countryNm);
+
     List<String> findDistinctCustLastNmByCustFirstNm(String custFirstNm);
 
 
